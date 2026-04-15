@@ -101,7 +101,13 @@ backend/
 |------|-----|
 | Tailwind CSS | Utility-first CSS. You write `className="flex gap-4 p-2 bg-white"` instead of separate CSS files. Fast to build with |
 | shadcn/ui | Pre-built React components (buttons, tables, dialogs, etc.) built on Tailwind. You copy components into your project — no black-box library |
-
+| clsx | 
+| tailwind-merge |
+|class-variance-authority |
+| tailwindcss-animate |
+| radix-ui |
+| next-themes |
+| sonner |
 > **What is shadcn/ui?** Unlike a regular component library (like MUI), shadcn/ui copies the component source code INTO your project. You own it, can edit it, and it uses Tailwind under the hood. It's the current industry standard for Next.js projects.
 
 ### Data Fetching
@@ -215,15 +221,21 @@ NEXT_PUBLIC_API_URL=http://localhost:5000/api
 
 ### Frontend `package.json` (core deps)
 ```json
-{
-  "dependencies": {
-    "next": "14.2.3",
-    "react": "^18",
-    "react-dom": "^18",
-    "axios": "^1.7.2",
-    "@tanstack/react-query": "^5.45.0",
-    "lucide-react": "^0.400.0"
-  }
+"dependencies": {
+  "next": "14.2.3",
+  "react": "^18",
+  "react-dom": "^18",
+  "axios": "^1.7.2",
+  "@tanstack/react-query": "^5.45.0",
+  "lucide-react": "^0.400.0",
+
+  "clsx": "^2.1.1",
+  "tailwind-merge": "^3.5.0",
+  "class-variance-authority": "^0.7.1",
+  "tailwindcss-animate": "^1.0.7",
+  "radix-ui": "^1.4.3",
+  "next-themes": "^0.4.6",
+  "sonner": "^2.0.7"
 }
 ```
 

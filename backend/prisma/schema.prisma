@@ -1,13 +1,85 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Flat {
+  id        String   @id @default(uuid())
+  name      String
+  address   String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  rooms Room[]
+
+  @@map("flats")
+}
+
+model Room {
+  id          String   @id @default(uuid())
+  name        String
+  maxCapacity Int      @map("max_capacity")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  flatId String @map("flat_id")
+  flat   Flat   @relation(fields: [flatId], references: [id], onDelete: Cascade)
+
+  beds Bed[]
+
+  @@map("rooms")
+}
+
+model Bed {
+  id        String    @id @default(uuid())
+  label     String
+  status    BedStatus @default(available)
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+
+  roomId String @map("room_id")
+  room   Room   @relation(fields: [roomId], references: [id], onDelete: Cascade)
+
+  assignments TenantAssignment[]
+
+  @@map("beds")
+}
+
+model Tenant {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  phone     String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  assignments TenantAssignment[]
+
+  @@map("tenants")
+}
+
+model TenantAssignment {
+  id         String   @id @default(uuid())
+  isActive   Boolean  @default(true) @map("is_active")
+  assignedAt DateTime @default(now()) @map("assigned_at")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  tenantId String  @map("tenant_id")
+  tenant   Tenant  @relation(fields: [tenantId], references: [id])
+
+  bedId String @map("bed_id")
+  bed   Bed    @relation(fields: [bedId], references: [id])
+
+  @@map("tenant_assignments")
+}
+
+enum BedStatus {
+  available
+  occupied
+  under_maintenance
 }
