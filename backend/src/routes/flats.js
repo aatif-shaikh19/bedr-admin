@@ -9,6 +9,7 @@ const {
 } = require('../controllers/flats.controllers')
 
 const router = express.Router()
+const { getRoomsByFlat, createRoom } = require('../controllers/rooms.controller')
 
 /**
  * @swagger
@@ -123,10 +124,6 @@ router.delete(
   deleteFlat
 )
 
-// Add this import at the top of flats.js, after the existing imports
-const { getRoomsByFlat, createRoom } = require('../controllers/rooms.controller')
-
-// Add these routes before module.exports = router
 /**
  * @swagger
  * /flats/{flatId}/rooms:
