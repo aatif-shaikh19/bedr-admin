@@ -2,8 +2,8 @@
 
 A full-stack property management admin panel for managing flats, rooms, beds, and tenant assignments. Built as part of the BedR Full Stack Intern Assignment.
 
-**Live Demo:** [https://bedr-admin.vercel.app](https://bedr-admin.vercel.app)  
-**API Base URL:** [https://bedr-backend.onrender.com/api](https://bedr-backend.onrender.com/api)  
+**Live Demo:** [https://bedr-admin.vercel.app/](https://bedr-admin.vercel.app)  
+**API Base URL:** [https://bedr-backend-68gd.onrender.com/api](https://bedr-backend.onrender.com/api)  
 **API Documentation:** [https://bedr-backend.onrender.com/api/docs](https://bedr-backend.onrender.com/api/docs)
 
 ---
@@ -323,7 +323,7 @@ The seed script wipes all existing data and creates a fresh set of sample record
 3. Build command: `npm install && npx prisma generate`
 4. Start command: `node src/index.js`
 5. Add all environment variables from `backend/.env` (with production values)
-6. Set `NODE_ENV=production` and `FRONTEND_URL=https://your-app.vercel.app`
+6. Set `NODE_ENV=production` and `FRONTEND_URL=https://bedr-admin.vercel.app/`
 
 ### Frontend on Vercel
 
